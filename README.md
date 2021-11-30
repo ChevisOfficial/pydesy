@@ -6,7 +6,7 @@ Geodetic library, which includes the following tasks:
 2. Solution of all types of serifs and assessment of their accuracy
 3. Basic geodesy tasks (example: inverse geodetic task)
 4. Applied geodesy tasks (example: perpendicular baseline)
-5. Higher geodesy tasks (7 elements of Helmert)
+5. Higher geodesy tasks (example: 7 elements of Helmert)
 ```
 Also present:
 ```
