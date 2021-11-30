@@ -10,7 +10,8 @@ Geodetic library, which includes the following tasks:
 Also present:
 ```
 1. Reading TLE format
-2. Some problems from geometry 
+2. Some problems from geometry
+3. Each constructed move or intersection can be displayed in a separate window for clarity of the result 
 ```
 To install and use:
 ```
