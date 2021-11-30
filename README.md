@@ -1,4 +1,5 @@
 # Pydesy package description
+### Last version: 0.0.2
 Geodetic library, which includes the following tasks:
 ```
 1. Calculation of theodolite traverse (tachymetric traverse) and assessment of its accuracy 
