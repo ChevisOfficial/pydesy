@@ -11,7 +11,7 @@ Also present:
 ```
 1. Reading TLE format
 2. Some problems from geometry
-3. Each constructed move or intersection can be displayed in a separate window for clarity of the result 
+3. Each constructed traverse or serifs can be displayed in a separate window for clarity of the result 
 ```
 To install and use:
 ```
