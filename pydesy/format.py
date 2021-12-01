@@ -1,5 +1,5 @@
 class TLE:
-    def __init__(self, line1, line2):
+    def __init__(self, line1 : str, line2 : str):
         spline1 = line1.split()
         spline2 = line2.split()
 

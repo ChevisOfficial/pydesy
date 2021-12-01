@@ -61,11 +61,11 @@ class Ellipsoid:
         print(A12)
         
 class Helmert:
-    def __init__(self, points1, points2):
+    def __init__(self, points1 : list, points2 : list):
         self.points1 = points1
         self.points2 = points2
         
-    def calculate_params(self):
+    def calculate_params(self) -> dict:
         assert len(self.points1) == len(self.points2) and len(self.points1) >= 3 and len(self.points2) >= 3
         matrixL = list()
         for i in range(len(self.points1)):
@@ -92,7 +92,7 @@ class Helmert:
             "ez\"": deg(self.matrixX[6,0]) * 3600
         }
 
-    def calculate_accuracy_score(self):
+    def calculate_accuracy_score(self) -> dict:
         self.matrixV = self.matrixA @ self.matrixX + self.matrixL
         sigma0 = sqrt(np.sum(np.power(self.matrixV, 2)) / (3 * len(self.points1) - 7))
         self.matrixQ = np.linalg.inv(np.transpose(self.matrixA) @ self.matrixA)
@@ -108,7 +108,7 @@ class Helmert:
             "σez" : deg(sigma0 * sqrt(self.matrixQ[6, 6])) * 3600
         }
 
-    def calculate_divergences(self):
+    def calculate_divergences(self) -> dict:
         divX, divY, divZ = list(), list(), list()
 
         for i in range(len(self.points1)):

@@ -56,27 +56,27 @@ class TheodoliteCourse:
     def __init__(self, scale=Scales.S1_500):
         self.scale = scale
     
-    def set_scale(self, scale):
+    def set_scale(self, scale : float):
         self.scale = scale
     
-    def set_points(self, startPoint, endPoint):
+    def set_points(self, startPoint : Point, endPoint : Point):
         self.startPoint =  startPoint
         self.endPoint = endPoint
         
-    def set_direction_angles(self, startDirectionAngle, endDirectionAngle):
+    def set_direction_angles(self, startDirectionAngle : list, endDirectionAngle : list):
         self.startDirectionAngle = startDirectionAngle
         self.endDirectionAngle = endDirectionAngle
 
-    def set_horizontal_angles(self, horizontalAngles):
+    def set_horizontal_angles(self, horizontalAngles : list):
         self.horizontalAngles = horizontalAngles
         
-    def set_side_lenghts(self, sideLenghts):
+    def set_side_lenghts(self, sideLenghts : list):
         self.sideLenghts = sideLenghts
         
-    def set_average_excess(self, averageExcess):
+    def set_average_excess(self, averageExcess : list):
         self.averageExcess = averageExcess
         
-    def calculate_course(self):
+    def calculate_course(self) -> dict:
         self.errors = []
         self.horizontalDiscrepancy = (angle(sum(self.horizontalAngles)) - angle(self.endDirectionAngle - self.startDirectionAngle) - 180) * 60
         self.limitHorizontalDiscrepancy = TheodoliteRequirement.requirement[self.scale]["limit_horizontal_discrepancy"](len(self.horizontalAngles))
@@ -89,10 +89,10 @@ class TheodoliteCourse:
             self.errors.append(f"The sum lengths of the theodolite course is greater than the specified value: {self.sumSideLenghts} > {TheodoliteRequirement.requirement[self.scale]['maximum_length']}")
 
         self.angleCorrection = -self.horizontalDiscrepancy / len(self.horizontalAngles)
-        self.directionAngles = [angle(self.startDirectionAngle + 180 + angle(self.horizontalAngles[0], s=self.angleCorrection))]
+        self.directionAngles = [angle(self.startDirectionAngle + 180 + angle(self.horizontalAngles[0], s = self.angleCorrection))]
         self.incrementsX, self.incrementsY = list(), list()
         for i in range(1, len(self.horizontalAngles)):
-            self.directionAngles.append(angle(self.directionAngles[i-1] + 180 + angle(self.horizontalAngles[i], s=self.angleCorrection)))
+            self.directionAngles.append(angle(self.directionAngles[i-1] + 180 + angle(self.horizontalAngles[i], s = self.angleCorrection)))
             self.incrementsX.append(-cos(self.directionAngles[i-1]) * self.sideLenghts[i-1])
             self.incrementsY.append(-sin(self.directionAngles[i-1]) * self.sideLenghts[i-1])
 
@@ -130,7 +130,7 @@ class TheodoliteCourse:
             "errors" : self.errors
         }
     
-    def save_report(self, fileName):
+    def save_report(self, fileName : str):
         with open(fileName, "w") as report:
             report.write(f"Report at {datetime.now()}\n")
             report.write("Points:\n\tName\tX\tY\tH\n")
